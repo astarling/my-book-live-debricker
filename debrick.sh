@@ -345,15 +345,15 @@ sync
 mdadm --create $rootfsRaid --verbose --metadata=0.9 --raid-devices=2 --level=raid1 --run $diskRoot1 missing
 mdadm --wait $rootfsRaid
 sync
-sleep 5
+sleep 10
 mkfs.ext3 -c -b 4096 $rootfsRaid
 sync
-sleep 5
+sleep 20
 
 mdadm $rootfsRaid --add --verbose $diskRoot2
 echo
 echo -n "synchronize raid... "
-sleep 5
+sleep 10
 mdadm --wait $rootfsRaid
 sync
 echo -e "done\n"
