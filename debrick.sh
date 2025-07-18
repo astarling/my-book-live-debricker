@@ -9,7 +9,9 @@
 #help screen
 if  [ $# = 1 -a "$1" = "--help" ]; then
 echo "
-standard use of script is:
+Should install before use it: apt-get install mdadm parted gcc
+
+Standard use of script is:
     sudo ./debricker.sh     the script will find out what disk to use, it will not
                             touch the partition tables and therefore perserves data.
                             it will look what the newest version of the firmware is
@@ -343,15 +345,15 @@ sync
 mdadm --create $rootfsRaid --verbose --metadata=0.9 --raid-devices=2 --level=raid1 --run $diskRoot1 missing
 mdadm --wait $rootfsRaid
 sync
-sleep 2
+sleep 5
 mkfs.ext3 -c -b 4096 $rootfsRaid
 sync
-sleep 2
+sleep 5
 
 mdadm $rootfsRaid --add --verbose $diskRoot2
 echo
 echo -n "synchronize raid... "
-sleep 2
+sleep 5
 mdadm --wait $rootfsRaid
 sync
 echo -e "done\n"
