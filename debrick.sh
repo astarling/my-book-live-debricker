@@ -206,6 +206,7 @@ fi
 
 #construct the swap program
 echo "\
+#define _LARGEFILE64_SOURCE     /* See feature_test_macros(7) */
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -217,7 +218,7 @@ echo "\
 
 #define MD_NEW_SIZE_SECTORS(x) ((x & ~(MD_RESERVED_SECTORS - 1)) - MD_RESERVED_SECTORS)
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int fd, i;
     unsigned long size;
